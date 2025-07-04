@@ -1203,7 +1203,7 @@ def requirements():
             except ValueError:
                 print(f"{warn}Version check failed. Skipping site update.")
                 # shell(f"cd {sites_dir} && git pull")
-    else:
+      else:
         # download(websites_url, "maxsites.zip")
         print(f"\n{info2}Downloading website files....{nc}")
         shell(f"git clone {sites_repo} {sites_dir}")
